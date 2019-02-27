@@ -102,7 +102,7 @@ class BabyDragon
   end
 end
 
-dees_dragon = BabyDragon.new("Robert", color: :rainbow)
+dees_dragon = BabyDragon.new("Robert", color: :purple)
 
 dees_dragon.do_a_trick
 dees_dragon.eat
