@@ -18,7 +18,7 @@ class BabyDragon
 
   def drink
     @hydration = 10
-    puts "Slow down there buddy! #{@name} drank an entire swimming pool!"
+    puts "Slow down there buddy! #{@name} drank an entire swimming pool (and the swimmer)!"
     display_ascii("ascii/swimming.txt")
     process_time
   end
