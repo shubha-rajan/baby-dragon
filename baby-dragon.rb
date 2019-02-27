@@ -1,4 +1,9 @@
 class BabyDragon
+  def display_ascii(filepath)
+    banner = File.read(filepath)
+    puts banner
+  end
+
   def initialize(name, color: :gold)
     @color = color
     @color_options = [:blue, :red, :rainbow, :purple, :gold, :green]
@@ -28,14 +33,13 @@ class BabyDragon
   def sleep
     @is_asleep = true
     puts "#{@name} curled up and fell asleep"
-
+    display_ascii("ascii/sleeping.txt")
     3.times { process_time }
   end
 
   def play
     puts "#{@name} takes out their yo-yo and walks a dog AND THEN JUMPS IN THE AIR AND FLIES"
-    banner = File.read("ascii/play.txt")
-    puts banner
+    display_ascii("ascii/play.txt")
     process_time
   end
 
@@ -43,17 +47,22 @@ class BabyDragon
     case @color
     when :blue
       puts "#{@name} opened up their own microbrewery. You HAVE to try their IPAs."
+      display_ascii("ascii/beer.txt")
     when :red
       puts "#{@name} hosts a barbecue!! They use their fire breath to cook the perfect burgers."
     when :rainbow
       puts "A UNICORN APPEARS!!!! They become best friends with #{@name}"
+      display_ascii("ascii/unicorn.txt")
     when :purple
       puts "#{@name} just DISMANTLED the PATRIARCHY. Fight the power, baby dragon."
+      display_ascii("ascii/raised_fist.txt")
     when :gold
       puts "#{@name} takes their stash of gold and invests it in a mutual fund. It pays off."
       puts "How fiscally responsible!"
+      display_ascii("ascii/money.txt")
     when :green
       puts "#{@name} says RIBBIT like a FROG!!!!!"
+      display_ascii("ascii/frog.txt")
     end
     process_time
   end
@@ -70,17 +79,16 @@ class BabyDragon
       end
       puts "#{@name} is weak."
       puts "They call to you in their final moments -- 'it's okay...i still love you.' "
-      banner = File.read("ascii/i_still_love_you.txt")
-      puts banner
+      display_ascii("ascii/i_still_love_you.txt")
       exit
     elsif @hungriness_level <= 0
       if @is_asleep
         @is_asleep = false
         puts "#{@name} woke up!"
-        banner = File.read("ascii/wake_up.txt")
-        puts banner
+        display_ascii("ascii/wake_up.txt")
       end
       puts "#{@name} is hangry! They EAT YOU!"
+      display_ascii("ascii/you_get_eaten.txt")
       exit
     elsif @hydration <= 0
       if @is_asleep
@@ -88,8 +96,7 @@ class BabyDragon
         puts "#{@name} woke up!"
       end
       puts "#{@name} coughs and BURNS YOUR HOUSE DOWN!!!!!!!"
-      banner = File.read("ascii/fire_breathing.txt")
-      puts banner
+      display_ascii("ascii/fire_breathing.txt")
       exit
     end
   end
@@ -102,8 +109,3 @@ dees_dragon.eat
 dees_dragon.drink
 
 dees_dragon.sleep
-
-100.times do |i|
-  puts "This is the #{i}th time playing:"
-  dees_dragon.play
-end
