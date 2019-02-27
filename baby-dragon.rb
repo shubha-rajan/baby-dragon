@@ -19,7 +19,7 @@ class BabyDragon
   def drink
     @hydration = 10
     puts "Slow down there buddy! #{@name} drank an entire swimming pool!"
-
+    display_ascii("ascii/swimming.txt")
     process_time
   end
 
@@ -104,8 +104,8 @@ end
 
 dees_dragon = BabyDragon.new("Robert", color: :purple)
 
-dees_dragon.do_a_trick
-dees_dragon.eat
+# dees_dragon.do_a_trick
+# dees_dragon.eat
 dees_dragon.drink
 
-dees_dragon.sleep
+# dees_dragon.sleep
