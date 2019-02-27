@@ -1,7 +1,19 @@
+require "colorize"
+require "lolize"
+
+$colorizer = Lolize::Colorizer.new
+
 class BabyDragon
   def display_ascii(filepath)
     banner = File.read(filepath)
     puts banner
+  end
+
+  def wake_up
+    if @is_asleep
+      @is_asleep = false
+      puts "#{@name} woke up!"
+    end
   end
 
   def initialize(name, color: :gold)
@@ -46,22 +58,22 @@ class BabyDragon
   def do_a_trick
     case @color
     when :blue
-      puts "#{@name} opened up their own microbrewery. You HAVE to try their IPAs."
+      puts "#{@name} opened up their own microbrewery. You HAVE to try their IPAs.".colorize(:blue)
       display_ascii("ascii/beer.txt")
     when :red
-      puts "#{@name} hosts a barbecue!! They use their fire breath to cook the perfect burgers."
+      puts "#{@name} hosts a barbecue!! They use their fire breath to cook the perfect burgers.".colorize(:red)
     when :rainbow
-      puts "A UNICORN APPEARS!!!! They become best friends with #{@name}"
+      $colorizer.write "A UNICORN APPEARS!!!! They become best friends with #{@name}"
       display_ascii("ascii/unicorn.txt")
     when :purple
-      puts "#{@name} just DISMANTLED the PATRIARCHY. Fight the power, baby dragon."
+      puts "#{@name} just DISMANTLED the PATRIARCHY. Fight the power, baby dragon.".colorize(:purple)
       display_ascii("ascii/raised_fist.txt")
     when :gold
-      puts "#{@name} takes their stash of gold and invests it in a mutual fund. It pays off."
+      puts "#{@name} takes their stash of gold and invests it in a mutual fund. It pays off.".colorize(:yellow)
       puts "How fiscally responsible!"
       display_ascii("ascii/money.txt")
     when :green
-      puts "#{@name} says RIBBIT like a FROG!!!!!"
+      puts "#{@name} says RIBBIT like a FROG!!!!!".colorize(:green)
       display_ascii("ascii/frog.txt")
     end
     process_time
@@ -73,28 +85,18 @@ class BabyDragon
       @hungriness_level -= 1
       @hydration -= 3
     elsif @hungriness_level <= 0 && @hydration <= 0
-      if @is_asleep
-        @is_asleep = false
-        puts "#{@name} woke up!"
-      end
+      wake_up
       puts "#{@name} is weak."
       puts "They call to you in their final moments -- 'it's okay...i still love you.' "
       display_ascii("ascii/i_still_love_you.txt")
       exit
     elsif @hungriness_level <= 0
-      if @is_asleep
-        @is_asleep = false
-        puts "#{@name} woke up!"
-        display_ascii("ascii/wake_up.txt")
-      end
+      wake_up
       puts "#{@name} is hangry! They EAT YOU!"
       display_ascii("ascii/you_get_eaten.txt")
       exit
     elsif @hydration <= 0
-      if @is_asleep
-        @is_asleep = false
-        puts "#{@name} woke up!"
-      end
+      wake_up
       puts "#{@name} coughs and BURNS YOUR HOUSE DOWN!!!!!!!"
       display_ascii("ascii/fire_breathing.txt")
       exit
@@ -102,9 +104,9 @@ class BabyDragon
   end
 end
 
-dees_dragon = BabyDragon.new("Robert", color: :purple)
+dees_dragon = BabyDragon.new("Robert", color: :rainbow)
 
-# dees_dragon.do_a_trick
+dees_dragon.do_a_trick
 # dees_dragon.eat
 dees_dragon.drink
 
