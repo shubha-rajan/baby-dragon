@@ -26,7 +26,7 @@ class BabyDragon
   def eat
     @hungriness_level = 10
     puts "#{@name} ate like 6 bags of marshmallows (yo...)"
-
+    display_ascii("ascii/candy.txt")
     process_time
   end
 
